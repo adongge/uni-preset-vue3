@@ -6,9 +6,8 @@
         <text class="title">{{ title }}</text>
       </view>
       <view class="btn" @click="onGoDemo">跳转 Toast Demo</view>
-      <view class="btn" @click="onGoHttpDemo">跳转 HTTP Demo</view>
+      <view class="btn" @click="onGoNetworkDemo">跳转 Network Demo</view>
       <view class="btn" @click="onGoStoreDemo">跳转 Store Demo</view>
-      <view class="btn" @click="onGoApiDemo">跳转 API Demo</view>
     </view>
   </popup-host>
 </template>
@@ -22,16 +21,12 @@ function onGoDemo() {
   uni.navigateTo({ url: '/pages/demo/toast/toast' })
 }
 
-function onGoHttpDemo() {
-  uni.navigateTo({ url: '/pages/demo/http/http' })
+function onGoNetworkDemo() {
+  uni.navigateTo({ url: '/pages/demo/network/network' })
 }
 
 function onGoStoreDemo() {
   uni.navigateTo({ url: '/pages/demo/store/store' })
-}
-
-function onGoApiDemo() {
-  uni.navigateTo({ url: '/pages/demo/api/api' })
 }
 </script>
 

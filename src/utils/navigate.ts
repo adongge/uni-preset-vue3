@@ -92,9 +92,8 @@ export const navigate = {
 const PUBLIC_PAGES = new Set<string>([
   '/pages/index/index',
   '/pages/demo/toast/toast',
-  '/pages/demo/http/http',
+  '/pages/demo/network/network',
   '/pages/demo/store/store',
-  '/pages/demo/api/api',
 ])
 
 /** 注册一个新的公开页（不需要登录） */
