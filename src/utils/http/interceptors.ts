@@ -9,7 +9,7 @@
  */
 
 import { storage } from '@/utils/storage'
-import { TOKEN_KEY } from './config'
+import { TOKEN_KEY } from '@/config'
 import type { RequestInterceptorFn, ResponseInterceptorFn } from './types'
 
 export const requestInterceptors: RequestInterceptorFn[] = []

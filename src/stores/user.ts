@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import type { UserInfo } from '@/api/user'
 import { storage } from '@/utils/storage'
-import { TOKEN_KEY } from '@/utils/http/config'
+import { TOKEN_KEY } from '@/config'
 
 /** 用户信息结构（与后端 /api/user 对齐，定义见 @/api/user） */
 export type { UserInfo }

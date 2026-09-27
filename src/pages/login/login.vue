@@ -22,7 +22,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { api } from '@/api'
-import { WX_PLATFORM_ID } from '@/api/user'
+import { WX_PLATFORM_ID } from '@/config'
 import { useUserStore } from '@/stores/user'
 import { useToast } from '@/composables/useToast'
 import AppLayout from '@/components/AppLayout/AppLayout.vue'

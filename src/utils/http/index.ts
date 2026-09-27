@@ -10,7 +10,7 @@ import {
   BASE_URL,
   SUCCESS_CODE,
   TIMEOUT,
-} from './config'
+} from '@/config'
 import { requestInterceptors, responseInterceptors } from './interceptors'
 import { download, upload } from './upload'
 import type {
@@ -233,7 +233,7 @@ export function del<T = unknown>(
 
 /* ============ 重导出 ============ */
 
-export { BASE_URL, TIMEOUT, SUCCESS_CODE, TOKEN_KEY } from './config'
+export { BASE_URL, TIMEOUT, SUCCESS_CODE, TOKEN_KEY } from '@/config'
 export { requestInterceptors, responseInterceptors } from './interceptors'
 export { upload, download } from './upload'
 export type {

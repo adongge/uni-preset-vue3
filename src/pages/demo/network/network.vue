@@ -22,13 +22,6 @@
         <view class="btn" hover-class="btn-hover" @click="onDownload">下载百度 favicon</view>
       </view>
 
-      <!-- API 模块：登录表单 -->
-      <view class="section">
-        <view class="section-title">API 模块 · 登录表单</view>
-        <input v-model="username" class="input" placeholder="用户名" />
-        <input v-model="password" class="input" placeholder="密码" password />
-      </view>
-
       <!-- API 模块：操作 -->
       <view class="section">
         <view class="section-title">API 模块 · 操作</view>
@@ -42,7 +35,7 @@
         <view class="section-title">API 模块 · 当前 store 状态</view>
         <view class="info">token: {{ user.token || '(空)' }}</view>
         <view class="info">isLoggedIn: {{ user.isLoggedIn }}</view>
-        <view class="info">userInfo.name: {{ user.userInfo?.name ?? '(无)' }}</view>
+        <view class="info">userInfo.nickname: {{ user.userInfo?.nickname ?? '(无)' }}</view>
       </view>
 
       <!-- 导航拦截 -->
@@ -72,6 +65,7 @@
 import { ref } from 'vue'
 import { onLoad, onUnload } from '@dcloudio/uni-app'
 import { api } from '@/api'
+import { WX_PLATFORM_ID } from '@/config'
 import { useUserStore } from '@/stores/user'
 import { navigate, beforeNavigate } from '@/utils/navigate'
 import { useToast } from '@/composables/useToast'
@@ -79,8 +73,6 @@ import { http, BASE_URL } from '@/utils/http'
 import AppLayout from '@/components/AppLayout/AppLayout.vue'
 
 const baseUrl = BASE_URL
-const username = ref('demo')
-const password = ref('123456')
 const user = useUserStore()
 const toast = useToast()
 const logs = ref<string[]>([])
@@ -214,14 +206,24 @@ async function onDownload() {
 /* ============ API 模块示例 ============ */
 
 async function onLogin() {
-  log('api.user.login() ...')
+  log('uni.login() 获取微信 code ...')
+  let code: string
   try {
-    const result = await api.user.login({
-      username: username.value,
-      password: password.value,
+    const res = await uni.login({})
+    code = res.code
+  } catch (e) {
+    log('uni.login 失败: ' + (e as Error).message)
+    return
+  }
+
+  log('api.user.loginByWxCode() ...')
+  try {
+    const result = await api.user.loginByWxCode({
+      code,
+      platform_id: WX_PLATFORM_ID,
     })
     log('登录成功: ' + JSON.stringify(result))
-    user.loginSuccess(result)
+    user.loginSuccess({ token: result.token })
     log('已写入 userStore（持久化到 storage）')
   } catch (e) {
     log('登录失败: ' + (e as Error).message)
@@ -239,14 +241,8 @@ async function onGetUserInfo() {
   }
 }
 
-async function onLogout() {
-  log('api.user.logout() + store.logout() ...')
-  try {
-    await api.user.logout()
-    log('后端退出成功')
-  } catch (e) {
-    log('后端退出失败（仍将清空本地）: ' + (e as Error).message)
-  }
+function onLogout() {
+  log('store.logout() 清空本地登录态 ...')
   user.logout()
   log('本地已清空')
 }

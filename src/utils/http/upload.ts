@@ -16,7 +16,7 @@ import {
   SUCCESS_CODE,
   TOKEN_KEY,
   UPLOAD_TIMEOUT,
-} from './config'
+} from '@/config'
 import type {
   DownloadOptions,
   DownloadResult,

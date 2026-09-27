@@ -18,9 +18,6 @@ export interface UserInfo {
   city?: Record<string, unknown>
 }
 
-/** 平台 id（后端 platform_id），当前固定为 1 */
-export const WX_PLATFORM_ID = 1
-
 /** 微信小程序登录入参 */
 export interface WxLoginParams {
   /** uni.login 返回的临时登录凭证 */
