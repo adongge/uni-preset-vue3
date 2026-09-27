@@ -1,5 +1,5 @@
 <template>
-  <popup-host>
+  <AppLayout>
     <view class="content">
       <view class="title">网络 & API 测试</view>
       <view class="subtitle">baseURL: {{ baseUrl }}</view>
@@ -65,7 +65,7 @@
         </view>
       </view>
     </view>
-  </popup-host>
+  </AppLayout>
 </template>
 
 <script setup lang="ts">
@@ -76,6 +76,7 @@ import { useUserStore } from '@/stores/user'
 import { navigate, beforeNavigate } from '@/utils/navigate'
 import { useToast } from '@/composables/useToast'
 import { http, BASE_URL } from '@/utils/http'
+import AppLayout from '@/components/AppLayout/AppLayout.vue'
 
 const baseUrl = BASE_URL
 const username = ref('demo')

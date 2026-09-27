@@ -23,7 +23,7 @@
 - **依赖**：`@/composables/useToast`（错误/loading 提示）、`uni.*` 原生 API
 - **设计**：零运行时依赖，跨端统一（小程序 / H5 / APP）
 - **业务约定**：响应结构 `{ code, msg, data }`，业务成功码 `0`
-- **页面集成前提**：需要在页面根用 `<popup-host>` 包裹内容（详见 `src/components/popup-host/`），否则 toast/loading 不渲染。HTTP 模块的自动错误提示依赖于此。
+- **页面集成前提**：需要在页面根用 `<popup-host>` 或 `<AppLayout>` 包裹内容（详见 `src/components/popup-host/` 与 `src/components/AppLayout/`），否则 toast/loading 不渲染。HTTP 模块的自动错误提示依赖于此。
 
 ## 文件清单
 

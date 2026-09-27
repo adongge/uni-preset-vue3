@@ -7,7 +7,7 @@
 - **位置**：`src/pages/demo/toast/toast.vue`
 - **入口**：首页"跳转 Toast Demo"按钮 → `uni.navigateTo('/pages/demo/toast/toast')`
 - **演示范围**：`useToast()` 全部公开方法
-- **集成前提**：页面根用 `<popup-host>` 包裹，否则弹窗不渲染
+- **集成前提**：页面根用 `<popup-host>` 或 `<AppLayout>` 包裹，否则弹窗不渲染
 
 ## 演示场景速查
 
@@ -22,4 +22,4 @@
 ## 联动
 
 - HTTP 模块（[src/utils/http/README.md](../../../utils/http/README.md)）的自动错误 toast 复用同一个 `<toast />` 组件
-- 所有 demo 页面共用同一份 `<popup-host>` 承载方式
+- 所有 demo 页面共用同一份 `<AppLayout>` 承载方式（提供极光背景 + 滚动容器 + Toast）

@@ -1,5 +1,5 @@
 <template>
-  <popup-host>
+  <AppLayout>
     <view class="content">
       <view class="title">Toast 组件测试</view>
 
@@ -47,11 +47,12 @@
         <view class="btn btn-error" hover-class="btn-hover" @click="onDeleteFlow">删除流程（confirm + loading + success）</view>
       </view>
     </view>
-  </popup-host>
+  </AppLayout>
 </template>
 
 <script setup lang="ts">
 import { useToast } from '@/composables/useToast'
+import AppLayout from '@/components/AppLayout/AppLayout.vue'
 
 const toast = useToast()
 

@@ -1,5 +1,5 @@
 <template>
-  <popup-host>
+  <AppLayout>
     <view class="content">
       <image class="logo" src="/static/logo.png" />
       <view class="text-area">
@@ -8,12 +8,14 @@
       <view class="btn" @click="onGoDemo">跳转 Toast Demo</view>
       <view class="btn" @click="onGoNetworkDemo">跳转 Network Demo</view>
       <view class="btn" @click="onGoStoreDemo">跳转 Store Demo</view>
+      <view class="btn btn-theme" @click="onGoThemeDemo">跳转 Theme Demo</view>
     </view>
-  </popup-host>
+  </AppLayout>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import AppLayout from '@/components/AppLayout/AppLayout.vue'
 
 const title = ref('Hello')
 
@@ -27,6 +29,10 @@ function onGoNetworkDemo() {
 
 function onGoStoreDemo() {
   uni.navigateTo({ url: '/pages/demo/store/store' })
+}
+
+function onGoThemeDemo() {
+  uni.navigateTo({ url: '/pages/demo/theme/index' })
 }
 </script>
 
@@ -64,5 +70,9 @@ function onGoStoreDemo() {
   font-size: 30rpx;
   border-radius: 12rpx;
   padding: 24rpx 60rpx;
+}
+
+.btn-theme {
+  background-color: var(--accent-sec);
 }
 </style>

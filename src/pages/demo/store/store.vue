@@ -1,5 +1,5 @@
 <template>
-  <popup-host>
+  <AppLayout>
     <view class="content">
       <view class="title">Store 测试（appStore）</view>
 
@@ -25,7 +25,7 @@
         <view class="section-title">userStore 状态</view>
         <view class="info">token: {{ user.token || '(空)' }}</view>
         <view class="info">isLoggedIn: {{ user.isLoggedIn }}</view>
-        <view class="info">userInfo.name: {{ user.userInfo?.name ?? '(无)' }}</view>
+        <view class="info">userInfo.nickname: {{ user.userInfo?.nickname ?? '(无)' }}</view>
         <view class="info">userInfo.id: {{ user.userInfo?.id ?? '(无)' }}</view>
       </view>
 
@@ -36,12 +36,13 @@
         <view class="btn btn-error" hover-class="btn-hover" @click="onLogout">退出登录</view>
       </view>
     </view>
-  </popup-host>
+  </AppLayout>
 </template>
 
 <script setup lang="ts">
 import { useAppStore } from '@/stores/app'
 import { useUserStore } from '@/stores/user'
+import AppLayout from '@/components/AppLayout/AppLayout.vue'
 
 const app = useAppStore()
 const user = useUserStore()
@@ -65,7 +66,7 @@ function onUserInit() {
 function onMockLogin() {
   user.loginSuccess({
     token: 'mock-token-' + Date.now(),
-    userInfo: { id: 1, name: '张三' },
+    userInfo: { id: 1, nickname: '张三' },
   })
 }
 

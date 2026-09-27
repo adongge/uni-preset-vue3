@@ -23,6 +23,12 @@
 			"style": {
 				"navigationBarTitleText": "Store Demo"
 			}
+		},
+		{
+			"path": "pages/demo/theme/index",
+			"style": {
+				"navigationBarTitleText": "Theme Demo"
+			}
 		}
 	],
 	"globalStyle": {
