@@ -87,13 +87,15 @@ export const navigate = {
 
 /**
  * 不需要登录就能访问的页面路径（精确匹配）。
- * 默认包含所有 demo 页与首页；业务方可调用 addPublicPage 扩展。
+ * 默认包含所有 demo 页、首页与登录页；业务方可调用 addPublicPage 扩展。
  */
 const PUBLIC_PAGES = new Set<string>([
   '/pages/index/index',
+  '/pages/login/login',
   '/pages/demo/toast/toast',
   '/pages/demo/network/network',
   '/pages/demo/store/store',
+  '/pages/demo/theme/index',
 ])
 
 /** 注册一个新的公开页（不需要登录） */

@@ -1,14 +1,11 @@
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
+import type { UserInfo } from '@/api/user'
 import { storage } from '@/utils/storage'
 import { TOKEN_KEY } from '@/utils/http/config'
 
-/** 用户信息结构（业务字段按需扩展） */
-export interface UserInfo {
-  id: number | string
-  name: string
-  avatar?: string
-}
+/** 用户信息结构（与后端 /api/user 对齐，定义见 @/api/user） */
+export type { UserInfo }
 
 /** 用户信息在 storage 中的 key */
 const USER_INFO_KEY = 'USER_INFO'

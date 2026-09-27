@@ -29,6 +29,12 @@
 			"style": {
 				"navigationBarTitleText": "Theme Demo"
 			}
+		},
+		{
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "微信登录"
+			}
 		}
 	],
 	"globalStyle": {

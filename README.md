@@ -133,10 +133,14 @@ themeStore.init()        // 从 storage 恢复（App.onLaunch 已自动调用）
 
 ```ts
 import { api } from '@/api'
+import { WX_PLATFORM_ID } from '@/api/user'
 
-await api.user.login({ username, password })
+// 微信小程序登录：用 uni.login 拿到的 code 换取 token
+const { token } = await api.user.loginByWxCode({ code, platform_id: WX_PLATFORM_ID })
+
+// 获取 / 修改当前用户信息
 await api.user.getUserInfo()
-await api.user.logout()
+await api.user.updateUserInfo({ nickname: '张三' })
 ```
 
 新增业务：
@@ -176,7 +180,24 @@ onUnload(unregister)
 addPublicPage('/pages/about/about')
 ```
 
-**登录守卫**：`main.ts` 已调用 `installLoginGuard()`，未登录时 push 到非公开页会被拦截并 toast "请先登录"。默认公开页：首页 + 所有 demo 页。
+**登录守卫**：`main.ts` 已调用 `installLoginGuard()`，未登录时 push 到非公开页会被拦截并 toast "请先登录"。默认公开页：首页 + 登录页 + 所有 demo 页。
+
+### 微信登录
+
+```ts
+// 登录页：pages/login/login.vue 已实现完整流程
+// uni.login 取 code → loginByWxCode 换 token → loginSuccess 写入 store → reLaunch 首页
+
+// 业务方在自己的页面中触发登录：
+import { useUserStore } from '@/stores/user'
+
+const user = useUserStore()
+user.isLoggedIn                    // 登录态判断
+user.loginSuccess({ token })       // 登录成功后写入（自动持久化）
+user.logout()                      // 退出登录
+```
+
+微信登录需要在小程序后台配置合法域名，并在 `src/manifest.json` 的 `mp-weixin.appid` 填入真实 appid。
 
 ## 目录结构
 
@@ -193,6 +214,7 @@ src/
 ├── config/              # 全局配置（主题字典 theme.ts）
 ├── pages/
 │   ├── index/           # 首页（用 AppLayout 展示门面效果）
+│   ├── login/           # 微信一键登录（uni.login code 换 token）
 │   └── demo/            # 演示页面（业务与演示分离）
 │       ├── toast/       # useToast 四态演示
 │       ├── http/        # HTTP 封装演示
